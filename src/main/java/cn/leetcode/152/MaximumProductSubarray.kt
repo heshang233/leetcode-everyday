@@ -18,7 +18,7 @@ class MaximumProductSubarray {
         for (i in nums.size - 1 downTo 0) {
             a = a * nums[i]
             if (max < a) max = a
-            if (nums[i] === 0) a = 1
+            if (nums[i] == 0) a = 1
         }
         return max
     }

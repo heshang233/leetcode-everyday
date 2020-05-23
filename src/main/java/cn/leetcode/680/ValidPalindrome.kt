@@ -22,9 +22,9 @@ class ValidPalindrome {
         return chars[i + 1] != chars[j - 2] || chars[i + 2] != chars[j - 1]
     }
 
-    private fun isValid(chars: CharArray, i: Int, j: Int): Boolean {
-        var i = i
-        var j = j
+    private fun isValid(chars: CharArray, a: Int, b: Int): Boolean {
+        var i = a
+        var j = b
         while (i < j) {
             if (chars[i] != chars[j]) {
                 return false
