@@ -1,5 +1,7 @@
 package cn.leetcode.`102`
 
+import cn.huangsy.BuildTree
+
 /**
  * @author huangsy
  * @date 2020/5/22 8:33
@@ -32,5 +34,15 @@ class BuildTree {
         var left: TreeNode? = null
         var right: TreeNode? = null
 
+    }
+
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            val preorder = intArrayOf(3, 9, 20, 15, 7)
+            val inorder = intArrayOf(9, 3, 15, 20, 7)
+            val buildTree = BuildTree()
+            val treeNode = buildTree.buildTree(preorder, inorder)
+        }
     }
 }

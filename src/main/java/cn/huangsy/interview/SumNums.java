@@ -1,4 +1,4 @@
-package cn.huangsy.interview64;
+package cn.huangsy.interview;
 
 /**
  * @author huangsy
