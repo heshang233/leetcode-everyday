@@ -37,7 +37,7 @@ public class Solution {
      * @param head
      * @return
      */
-    public ListNode deleteDuplicates(ListNode head) {
+    public ListNode deleteDuplicatesII(ListNode head) {
 //        return getNext(head, null);
 
         if (head == null || head.next == null) {
@@ -50,9 +50,9 @@ public class Solution {
             while (next != null && head.val == next.val) {
                 next = next.next;
             }
-            head = deleteDuplicates(next);
+            head = deleteDuplicatesII(next);
         } else {
-            head.next = deleteDuplicates(next);
+            head.next = deleteDuplicatesII(next);
         }
         return head;
     }
@@ -81,4 +81,25 @@ public class Solution {
         ListNode(int val, ListNode next) { this.val = val; this.next = next; }
     }
 
+
+    /**
+     * https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/
+     * @param head
+     * @return
+     */
+    public ListNode deleteDuplicatesI(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode next = head.next;
+        if (head.val == next.val) {
+
+            while (next != null && head.val == next.val) {
+                next = next.next;
+            }
+        }
+        head.next = deleteDuplicatesI(next);
+        return head;
+    }
 }
