@@ -102,4 +102,86 @@ public class Solution {
         head.next = deleteDuplicatesI(next);
         return head;
     }
+
+
+    /**
+     * https://leetcode-cn.com/problems/reverse-bits/
+     * @param n
+     * @return
+     */
+    // you need treat n as an unsigned value
+    public int reverseBits(int n) {
+        return Integer.reverse(n);
+    }
+
+    /**
+     * https://leetcode-cn.com/problems/search-a-2d-matrix/
+     * @param matrix
+     * @param target
+     * @return
+     */
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+
+        if (target > matrix[m - 1][n - 1] || target < matrix[0][0]) {
+            return false;
+        }
+
+        int mm = recursionBinarySearchM(matrix, 0, m - 1, target);
+
+        if (mm == -1) {
+            return false;
+        }
+
+        int nm = recursionBinarySearchN(matrix[mm], 0, n - 1, target);
+
+        return nm >= 0;
+    }
+
+
+    private int recursionBinarySearchM(int[][] arr, int low, int high, int target){
+
+        if (target >= arr[low][0] && target <= arr[low][arr[low].length - 1]) {
+            return low;
+        }
+
+        if (target >= arr[high][0] && target <= arr[high][arr[high].length - 1]) {
+            return high;
+        }
+
+        if (low > high) {
+            return -1;
+        }
+
+        int middle = (low + high) / 2;          //初始中间位置
+        if(arr[middle][0] > target){
+            //比关键字大则关键字在左区域
+            return recursionBinarySearchM(arr, low, middle-1, target);
+        }else if(arr[middle][0] < target){
+            //比关键字小则关键字在右区域
+            return recursionBinarySearchM(arr, middle+1, high, target);
+        }else {
+            return middle;
+        }
+    }
+
+    private int recursionBinarySearchN(int[] arr, int low, int high, int target){
+
+        if(target < arr[low] || target > arr[high] || low > high){
+            return -1;
+        }
+
+        int middle = (low + high) / 2;          //初始中间位置
+        if(arr[middle] > target){
+            //比关键字大则关键字在左区域
+            return recursionBinarySearchN(arr, low, middle-1, target);
+        }else if(arr[middle] < target){
+            //比关键字小则关键字在右区域
+            return recursionBinarySearchN(arr, middle+1, high, target);
+        }else {
+            return middle;
+        }
+    }
+
 }
