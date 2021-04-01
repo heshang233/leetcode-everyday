@@ -1,5 +1,6 @@
-package cn.solution;
+package cn.solution.march;
 
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -184,4 +185,12 @@ public class Solution {
         }
     }
 
+    /**
+     * https://leetcode-cn.com/problems/subsets-ii/
+     * @param nums
+     * @return
+     */
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        return null;
+    }
 }
