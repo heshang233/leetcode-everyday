@@ -1,5 +1,8 @@
 package cn.solution.april;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 /**
  * @author huangsy
  * @date 2021/4/1 8:37
@@ -42,5 +45,57 @@ public class Solution {
                 return n + clumsy(n-1, '+');
         }
     }
+
+    /**
+     * https://leetcode-cn.com/problems/volume-of-histogram-lcci/
+     * @param height
+     * @return
+     */
+    public int trap(int[] height) {
+        int trap = 0;
+        int i = 0;
+        Deque<Integer> deque = new LinkedList<>();
+        while (i < height.length) {
+            while (!deque.isEmpty() && height[i] > height[deque.peek()]) {
+                int j = deque.pop();
+                if (deque.isEmpty()) {
+                    break;
+                }
+
+                int n = deque.peek();
+                trap += (i - n - 1) * (Math.min(height[i], height[n]) - height[j]);
+            }
+            deque.push(i++);
+        }
+        return trap;
+
+//        int res = 0;
+//        int l=0,r=height.length-1;
+//        if (r<0) {
+//            return 0;
+//        }
+//        int lMax=height[l],rMax=height[r];
+//        while (l<r) {
+//            if (height[l]>height[r]) {
+//                if (height[r]<rMax) {
+//                    res += (rMax-height[r]);
+//                } else {
+//                    rMax = height[r];
+//                }
+//                r--;
+//            } else {
+//                if (height[l]<lMax) {
+//                    res += (lMax-height[l]);
+//                } else {
+//                    lMax = height[l];
+//                }
+//                l++;
+//            }
+//        }
+//        return res;
+    }
+
+
+
 
 }
