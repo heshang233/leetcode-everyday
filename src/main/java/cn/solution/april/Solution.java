@@ -95,7 +95,37 @@ public class Solution {
 //        return res;
     }
 
-
+    /**
+     * https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/
+     * @param nums
+     * @return
+     */
+    public int removeDuplicates(int[] nums) {
+//        int x = nums.length;
+//        for (int i = nums.length - 1; i >= 2; i--) {
+//            if (nums[i] == nums[i-1] && nums[i-1] == nums[i-2]) {
+//                int a = i;
+//                x--;
+//                while (a < x) {
+//                    int tmp = nums[a];
+//                    nums[a] = nums[a+1];
+//                    nums[a+1] = tmp;
+//                    a++;
+//                }
+//            }
+//        }
+//        return x;
+        if(nums.length<2) {
+            return nums.length;
+        }
+        int x = 2;
+        for (int i = 2; i < nums.length; i++) {
+            if (nums[x-2] != nums[i]) {
+                nums[x++] = nums[i];
+            }
+        }
+        return x;
+    }
 
 
 }
