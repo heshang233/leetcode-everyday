@@ -167,4 +167,52 @@ public class Solution {
         return false;
     }
 
+    /**
+     * https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/
+     * @param nums
+     * @return
+     */
+    public int findMin(int[] nums) {
+        int n = nums.length;
+        if (n == 1) {
+            return nums[0];
+        }
+        int l = 0, r = n - 1;
+        while (l < r) {
+            int p = l + (r - l) / 2;
+            if (nums[p] < nums[r]) {
+                r = p;
+            } else {
+                l = p + 1;
+            }
+        }
+        return nums[l];
+    }
+
+    /**
+     * https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/
+     * @param nums
+     * @return
+     */
+    public int findMinII(int[] nums) {
+        int n = nums.length;
+        if (n == 1) {
+            return nums[0];
+        }
+        int l = 0, r = n - 1;
+        while (l < r) {
+            int p = l + (r - l) / 2;
+            if (nums[l] == nums[p] && p != l) {
+                ++l;
+            } else if (nums[p] == nums[r] && p != r) {
+                --r;
+            } else if (nums[p] < nums[r]) {
+                r = p;
+            } else {
+                l = p + 1;
+            }
+        }
+        return nums[l];
+    }
+
 }
