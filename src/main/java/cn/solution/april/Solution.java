@@ -1,7 +1,9 @@
 package cn.solution.april;
 
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 /**
  * @author huangsy
@@ -213,6 +215,47 @@ public class Solution {
             }
         }
         return nums[l];
+    }
+
+    Map<String, Boolean> map = new HashMap<>();
+
+    /**
+     * https://leetcode-cn.com/problems/scramble-string/
+     * @param s1
+     * @param s2
+     * @return
+     */
+    public boolean isScramble(String s1, String s2) {
+        String key = s1.concat(s2);
+        if (map.containsKey(key)) {
+            return map.get(key);
+        }
+        if (s1.equals(s2)) {
+            map.put(key, true);
+            return true;
+        }
+
+        int[] array = new int[26];
+        for (int i = 0; i < s1.length(); i++) {
+            ++array[s1.charAt(i) - 'a'];
+            --array[s2.charAt(i) - 'a'];
+        }
+        for (int j : array) {
+            if (j != 0) {
+                return false;
+            }
+        }
+
+        int n = s1.length();
+        for (int i = 1; i < s1.length(); i++) {
+            if ((isScramble(s1.substring(0, i), s2.substring(0, i)) && isScramble(s1.substring(i), s2.substring(i))) ||
+                    (isScramble(s1.substring(0, i), s2.substring(n-i)) && isScramble(s1.substring(i), s2.substring(0, n-i)))) {
+                map.put(key, true);
+                return true;
+            }
+        }
+        map.put(key, false);
+        return false;
     }
 
 }
