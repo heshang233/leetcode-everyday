@@ -291,4 +291,44 @@ public class Solution {
         return haystack.indexOf(needle);
     }
 
+
+    /**
+     * https://leetcode-cn.com/problems/increasing-order-search-tree/
+     * @param root
+     * @return
+     */
+    public TreeNode increasingBST(TreeNode root) {
+        TreeNode dummyNode = new TreeNode(-1);
+        treeNode = dummyNode;
+        increasing(root);
+        return dummyNode.right;
+    }
+
+    private TreeNode treeNode;
+
+    private void increasing(TreeNode root) {
+        if (root != null) {
+
+            increasing(root.left);
+
+            treeNode.right = root;
+            root.left = null;
+            treeNode = root;
+
+            increasing(root.right);
+        }
+    }
+
+    public static class TreeNode {
+         int val;
+         TreeNode left;
+         TreeNode right;
+         TreeNode() {}
+         TreeNode(int val) { this.val = val; }
+         TreeNode(int val, TreeNode left, TreeNode right) {
+             this.val = val;
+             this.left = left;
+             this.right = right;
+         }
+    }
 }
