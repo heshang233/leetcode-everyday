@@ -281,4 +281,14 @@ public class Solution {
         return j+1;
     }
 
+    /**
+     * https://leetcode-cn.com/problems/implement-strstr/
+     * @param haystack
+     * @param needle
+     * @return
+     */
+    public int strStr(String haystack, String needle) {
+        return haystack.indexOf(needle);
+    }
+
 }
